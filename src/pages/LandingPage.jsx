@@ -105,28 +105,66 @@ function LandingPage() {
   }, [showMultiStep])
 
   const benefits = [
-    { icon: '⚡', title: 'Oszczędź czas', desc: 'Gotowe szablony i struktura' },
-    { icon: '📄', title: 'Profesjonalny PDF', desc: 'Export z brandingiem' },
-    { icon: '💾', title: 'Autozapis', desc: 'Nie stracisz danych' },
-    { icon: '🎯', title: '100% darmowe', desc: 'Bez ukrytych kosztów' },
+    { icon: '⚡', title: 'Oszczędź czas', desc: 'Gotowe szablony i struktura', color: 'from-amber-400 to-orange-500' },
+    { icon: '📄', title: 'Profesjonalny PDF', desc: 'Export z brandingiem', color: 'from-blue-400 to-indigo-500' },
+    { icon: '💾', title: 'Autozapis', desc: 'Nie stracisz danych', color: 'from-emerald-400 to-teal-500' },
+    { icon: '🎯', title: '100% darmowe', desc: 'Bez ukrytych kosztów', color: 'from-pink-400 to-rose-500' },
   ]
 
   return (
-    <div className="min-h-screen bg-bg-secondary relative overflow-hidden flex items-center">
-      {/* Subtle decorative background shapes */}
+    <div className="min-h-screen relative overflow-hidden flex items-center" style={{ background: 'linear-gradient(135deg, #f8f9ff 0%, #f0f4ff 50%, #e8f5f0 100%)' }}>
+      {/* Animated gradient orbs */}
       <div className="fixed inset-0 pointer-events-none overflow-hidden z-0">
         <div
-          className="decorative-shape animate-float bg-primary/10 w-64 h-64 blur-3xl"
-          style={{ top: '10%', left: '-5%' }}
+          className="absolute rounded-full animate-pulse"
+          style={{
+            top: '5%',
+            left: '-10%',
+            width: '500px',
+            height: '500px',
+            background: 'radial-gradient(circle, rgba(77, 101, 255, 0.15) 0%, transparent 70%)',
+            filter: 'blur(40px)'
+          }}
         />
         <div
-          className="decorative-shape animate-float-reverse bg-accent-mint/10 w-48 h-48 blur-2xl"
-          style={{ bottom: '10%', right: '-5%' }}
+          className="absolute rounded-full animate-pulse"
+          style={{
+            bottom: '0%',
+            right: '-15%',
+            width: '600px',
+            height: '600px',
+            background: 'radial-gradient(circle, rgba(0, 217, 165, 0.12) 0%, transparent 70%)',
+            filter: 'blur(50px)',
+            animationDelay: '1s'
+          }}
         />
         <div
-          className="decorative-shape animate-float-slow bg-primary/5 w-32 h-32 blur-xl"
-          style={{ top: '50%', right: '30%' }}
+          className="absolute rounded-full"
+          style={{
+            top: '40%',
+            right: '20%',
+            width: '300px',
+            height: '300px',
+            background: 'radial-gradient(circle, rgba(77, 101, 255, 0.08) 0%, transparent 70%)',
+            filter: 'blur(30px)'
+          }}
         />
+        {/* Subtle grid pattern */}
+        <div
+          className="absolute inset-0 opacity-[0.02]"
+          style={{
+            backgroundImage: 'linear-gradient(#4d65ff 1px, transparent 1px), linear-gradient(90deg, #4d65ff 1px, transparent 1px)',
+            backgroundSize: '50px 50px'
+          }}
+        />
+      </div>
+
+      {/* Floating decorative elements */}
+      <div className="fixed inset-0 pointer-events-none overflow-hidden z-0">
+        <div className="absolute top-20 left-20 w-3 h-3 bg-primary/30 rounded-full animate-bounce" style={{ animationDuration: '3s' }} />
+        <div className="absolute top-40 right-40 w-2 h-2 bg-accent-mint/40 rounded-full animate-bounce" style={{ animationDuration: '2.5s', animationDelay: '0.5s' }} />
+        <div className="absolute bottom-32 left-32 w-4 h-4 bg-primary/20 rounded-full animate-bounce" style={{ animationDuration: '3.5s', animationDelay: '1s' }} />
+        <div className="absolute bottom-20 right-20 w-2 h-2 bg-accent-mint/30 rounded-full animate-bounce" style={{ animationDuration: '2.8s', animationDelay: '0.3s' }} />
       </div>
 
       {/* Main content */}
@@ -135,72 +173,105 @@ function LandingPage() {
 
           {/* LEFT SIDE: Hero content */}
           <div className="space-y-8">
-            {/* Logo */}
+            {/* Logo with subtle glow */}
             <a
               href="https://www.aiproductheroes.pl/"
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-block hover:opacity-80 transition-opacity"
+              className="inline-block hover:scale-105 transition-transform duration-300"
             >
-              <img src={logoSvg} alt="AI Product Heroes" className="h-8 w-auto" />
+              <img src={logoSvg} alt="AI Product Heroes" className="h-9 w-auto drop-shadow-sm" />
             </a>
 
-            {/* Headline */}
+            {/* Badge */}
+            <div className="inline-flex items-center gap-2 bg-white/80 backdrop-blur-sm px-4 py-2 rounded-full border border-primary/20 shadow-sm">
+              <span className="flex h-2 w-2 relative">
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-accent-mint opacity-75"></span>
+                <span className="relative inline-flex rounded-full h-2 w-2 bg-accent-mint"></span>
+              </span>
+              <span className="text-sm font-medium text-secondary">Dołączyło już 500+ PM-ów</span>
+            </div>
+
+            {/* Headline with gradient */}
             <div className="space-y-4">
-              <h1 className="text-4xl lg:text-5xl font-extrabold text-secondary leading-tight">
-                Stwórz profesjonalny
-                <span className="text-primary block">PRD w 10 minut</span>
+              <h1 className="text-4xl lg:text-5xl xl:text-6xl font-extrabold leading-tight">
+                <span className="text-secondary">Stwórz profesjonalny</span>
+                <span className="block bg-gradient-to-r from-primary via-primary-light to-accent-mint bg-clip-text text-transparent">
+                  PRD w 10 minut
+                </span>
               </h1>
-              <p className="text-lg text-text-secondary max-w-md">
+              <p className="text-lg lg:text-xl text-text-secondary max-w-md leading-relaxed">
                 Darmowe narzędzie dla Product Managerów i założycieli startupów
               </p>
             </div>
 
-            {/* Benefits */}
-            <div className="grid grid-cols-2 gap-4">
+            {/* Benefits with colored icons */}
+            <div className="grid grid-cols-2 gap-3">
               {benefits.map((benefit, index) => (
                 <div
                   key={index}
-                  className="flex items-start gap-3 p-3 rounded-xl bg-white/50 backdrop-blur-sm border border-white/80 hover:bg-white/80 transition-colors"
+                  className="group flex items-start gap-3 p-4 rounded-2xl bg-white/70 backdrop-blur-sm border border-white shadow-sm hover:shadow-md hover:bg-white hover:-translate-y-0.5 transition-all duration-300"
                 >
-                  <span className="text-2xl">{benefit.icon}</span>
-                  <div>
+                  <div className={`w-10 h-10 rounded-xl bg-gradient-to-br ${benefit.color} flex items-center justify-center shadow-sm group-hover:scale-110 transition-transform duration-300`}>
+                    <span className="text-lg filter drop-shadow-sm">{benefit.icon}</span>
+                  </div>
+                  <div className="flex-1 min-w-0">
                     <div className="font-semibold text-secondary text-sm">{benefit.title}</div>
-                    <div className="text-text-muted text-xs">{benefit.desc}</div>
+                    <div className="text-text-muted text-xs mt-0.5">{benefit.desc}</div>
                   </div>
                 </div>
               ))}
             </div>
 
             {/* Footer branding */}
-            <p className="text-xs text-text-muted">
-              By{' '}
-              <a
-                href="https://www.aiproductheroes.pl/"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-primary hover:underline"
-              >
-                AI Product Heroes
-              </a>
-            </p>
+            <div className="flex items-center gap-3">
+              <div className="flex -space-x-2">
+                <div className="w-8 h-8 rounded-full bg-gradient-to-br from-primary to-primary-light flex items-center justify-center text-white text-xs font-bold ring-2 ring-white">A</div>
+                <div className="w-8 h-8 rounded-full bg-gradient-to-br from-accent-mint to-teal-500 flex items-center justify-center text-white text-xs font-bold ring-2 ring-white">K</div>
+                <div className="w-8 h-8 rounded-full bg-gradient-to-br from-amber-400 to-orange-500 flex items-center justify-center text-white text-xs font-bold ring-2 ring-white">M</div>
+              </div>
+              <p className="text-sm text-text-secondary">
+                By{' '}
+                <a
+                  href="https://www.aiproductheroes.pl/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="font-semibold text-primary hover:text-primary-hover transition-colors"
+                >
+                  AI Product Heroes
+                </a>
+              </p>
+            </div>
           </div>
 
           {/* RIGHT SIDE: Form */}
           <div className="flex items-center justify-center">
-            <div className="w-full max-w-md">
+            <div className="w-full max-w-md relative">
+              {/* Glow effect behind card */}
+              <div className="absolute -inset-1 bg-gradient-to-r from-primary/20 via-accent-mint/20 to-primary/20 rounded-3xl blur-xl opacity-70" />
               {showMultiStep ? (
-                <MultiStepForm
-                  email={userEmail}
-                  name={userName}
-                  onComplete={() => {
-                    window.location.href = `/app?email=${encodeURIComponent(userEmail)}`
-                  }}
-                />
+                <div className="relative">
+                  <MultiStepForm
+                    email={userEmail}
+                    name={userName}
+                    onComplete={() => {
+                      window.location.href = `/app?email=${encodeURIComponent(userEmail)}`
+                    }}
+                  />
+                </div>
               ) : (
-                <div className="bg-white rounded-2xl shadow-xl p-8 border border-gray-100">
-                  <div className="text-center mb-6">
-                    <h2 className="text-xl font-bold text-secondary mb-2">
+                <div className="relative bg-white rounded-2xl shadow-2xl p-8 border border-white/50 backdrop-blur-sm">
+                  {/* Decorative corner accent */}
+                  <div className="absolute top-0 right-0 w-24 h-24 bg-gradient-to-bl from-primary/5 to-transparent rounded-tr-2xl" />
+                  <div className="absolute bottom-0 left-0 w-20 h-20 bg-gradient-to-tr from-accent-mint/5 to-transparent rounded-bl-2xl" />
+
+                  <div className="relative text-center mb-6">
+                    <div className="inline-flex items-center justify-center w-14 h-14 rounded-2xl bg-gradient-to-br from-primary to-primary-light mb-4 shadow-lg">
+                      <svg className="w-7 h-7 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
+                      </svg>
+                    </div>
+                    <h2 className="text-2xl font-bold text-secondary mb-2">
                       Zapisz się i zacznij
                     </h2>
                     <p className="text-sm text-text-secondary">
@@ -439,15 +510,23 @@ function LandingPage() {
                     </div>
                   </div>
 
-                  <p className="text-xs text-text-muted text-center mt-4">
-                    Zapisując się, zgadzasz się na otrzymywanie materiałów edukacyjnych.
-                  </p>
+                  <div className="relative mt-6 pt-4 border-t border-gray-100">
+                    <div className="flex items-center justify-center gap-2 text-xs text-text-muted">
+                      <svg className="w-4 h-4 text-accent-mint" fill="currentColor" viewBox="0 0 20 20">
+                        <path fillRule="evenodd" d="M5 9V7a5 5 0 0110 0v2a2 2 0 012 2v5a2 2 0 01-2 2H5a2 2 0 01-2-2v-5a2 2 0 012-2zm8-2v2H7V7a3 3 0 016 0z" clipRule="evenodd" />
+                      </svg>
+                      <span>Twoje dane są bezpieczne. Bez spamu.</span>
+                    </div>
+                  </div>
                 </div>
               )}
             </div>
           </div>
         </div>
       </div>
+
+      {/* Bottom decorative line */}
+      <div className="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-primary/30 to-transparent" />
     </div>
   )
 }
