@@ -9,7 +9,11 @@
       "Bash(npm run build:*)",
       "WebFetch(domain:www.aiproductheroes.pl)",
       "Bash(cat:*)",
-      "Bash(npm run dev:*)"
+      "Bash(npm run dev:*)",
+      "WebFetch(domain:localhost)",
+      "Bash(lsof:*)",
+      "Bash(xargs:*)",
+      "Bash(git add:*)"
     ]
   }
 }

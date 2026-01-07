@@ -108,7 +108,7 @@ function Textarea({ label, placeholder, value, onChange, rows = 4 }) {
   )
 }
 
-function PRDForm() {
+function PRDForm({ userEmail }) {
   const [prdData, setPrdData] = useState(initialPrdData)
   const [saveStatus, setSaveStatus] = useState(null) // null, 'saving', 'saved'
   const saveTimeoutRef = useRef(null)
@@ -516,7 +516,7 @@ function PRDForm() {
 
         {/* Action buttons */}
         <div className="flex flex-col sm:flex-row gap-4 pt-6 border-t border-gray-200">
-          <PDFGenerator prdData={prdData} disabled={isFormEmpty()} />
+          <PDFGenerator prdData={prdData} disabled={isFormEmpty()} userEmail={userEmail} />
           <button
             type="button"
             onClick={handleClear}

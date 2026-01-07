@@ -447,13 +447,60 @@ class PRDPdfGenerator {
   }
 }
 
+const API_TOKEN = import.meta.env.VITE_MAILERLITE_API_TOKEN || 'API_TOKEN_PLACEHOLDER'
+
 export function generatePDF(prdData) {
   if (!prdData) throw new Error('No PRD data provided')
   const generator = new PRDPdfGenerator(prdData)
   generator.save()
 }
 
-function PDFGenerator({ prdData, disabled }) {
+/**
+ * Track PDF generation in MailerLite by adding group/tag
+ */
+const trackPDFGeneration = async (email) => {
+  if (!email) {
+    console.log('⚠️ No email provided for PDF tracking')
+    return
+  }
+
+  console.log('=== PDF GENERATION - ADDING GROUP/TAG ===')
+  console.log('Email:', email)
+  console.log('Group:', 'prd_pdf_generated')
+  console.log('API Token:', API_TOKEN ? 'Token loaded (length: ' + API_TOKEN.length + ')' : 'TOKEN MISSING!')
+
+  try {
+    const requestBody = {
+      email: email,
+      groups: ['175970988853298256']  // Actual group ID for "prd_pdf_generated"
+    }
+
+    console.log('Request body:', JSON.stringify(requestBody, null, 2))
+
+    const response = await fetch('https://connect.mailerlite.com/api/subscribers', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${API_TOKEN}`,
+      },
+      body: JSON.stringify(requestBody)
+    })
+
+    console.log('Response status:', response.status)
+
+    if (!response.ok) {
+      const error = await response.json()
+      console.error('❌ PDF group/tag API ERROR:', error)
+    } else {
+      const data = await response.json()
+      console.log('✅ PDF group/tag added successfully:', data)
+    }
+  } catch (error) {
+    console.error('❌ PDF tracking error:', error)
+  }
+}
+
+function PDFGenerator({ prdData, disabled, userEmail }) {
   const [isGenerating, setIsGenerating] = useState(false)
 
   const handleGenerate = async () => {
@@ -461,6 +508,10 @@ function PDFGenerator({ prdData, disabled }) {
     setIsGenerating(true)
     try {
       generatePDF(prdData)
+      // Track PDF generation in MailerLite (fire and forget)
+      if (userEmail) {
+        trackPDFGeneration(userEmail)
+      }
     } catch (error) {
       console.error('Error generating PDF:', error)
       alert('Wystapil blad podczas generowania PDF.')
