@@ -133,22 +133,22 @@ function MultiStepForm({ email, name, onComplete }) {
   }
 
   return (
-    <div className="bg-white rounded-2xl shadow-2xl p-8 border border-white/50 backdrop-blur-sm relative overflow-hidden">
+    <div className="bg-white rounded-2xl shadow-2xl p-5 lg:p-6 border border-white/50 backdrop-blur-sm relative overflow-hidden">
       {/* Decorative elements */}
-      <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-bl from-primary/5 to-transparent rounded-tr-2xl" />
-      <div className="absolute bottom-0 left-0 w-24 h-24 bg-gradient-to-tr from-accent-mint/5 to-transparent rounded-bl-2xl" />
+      <div className="absolute top-0 right-0 w-24 h-24 bg-gradient-to-bl from-primary/5 to-transparent rounded-tr-2xl" />
+      <div className="absolute bottom-0 left-0 w-20 h-20 bg-gradient-to-tr from-accent-mint/5 to-transparent rounded-bl-2xl" />
 
       {/* Progress indicator */}
-      <div className="relative mb-8">
-        <div className="flex items-center justify-between mb-3">
-          <span className="text-sm font-medium text-text-secondary">
+      <div className="relative mb-5">
+        <div className="flex items-center justify-between mb-2">
+          <span className="text-xs font-medium text-text-secondary">
             Krok {currentStep + 1} z {totalSteps}
           </span>
-          <span className="text-sm font-bold bg-gradient-to-r from-primary to-accent-mint bg-clip-text text-transparent">
+          <span className="text-xs font-bold bg-gradient-to-r from-primary to-accent-mint bg-clip-text text-transparent">
             {Math.round(progress)}%
           </span>
         </div>
-        <div className="h-2.5 bg-gray-100 rounded-full overflow-hidden shadow-inner">
+        <div className="h-2 bg-gray-100 rounded-full overflow-hidden shadow-inner">
           <div
             className="h-full bg-gradient-to-r from-primary via-primary-light to-accent-mint rounded-full transition-all duration-500 ease-out relative"
             style={{ width: `${progress}%` }}
@@ -160,55 +160,53 @@ function MultiStepForm({ email, name, onComplete }) {
 
       {/* Welcome message on first step */}
       {currentStep === 0 && name && (
-        <div className="relative mb-6 p-4 bg-gradient-to-r from-accent-mint/10 to-primary/5 rounded-xl border border-accent-mint/20">
-          <div className="flex items-start gap-3">
-            <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-accent-mint to-teal-500 flex items-center justify-center flex-shrink-0 shadow-sm">
-              <span className="text-sm">👋</span>
-            </div>
-            <p className="text-sm text-secondary">
-              <span className="font-semibold">Cześć {name}!</span> Odpowiedz na kilka pytań, żebyśmy mogli lepiej dopasować narzędzie do Twoich potrzeb.
+        <div className="relative mb-4 p-3 bg-gradient-to-r from-accent-mint/10 to-primary/5 rounded-lg border border-accent-mint/20">
+          <div className="flex items-center gap-2">
+            <span className="text-base">👋</span>
+            <p className="text-xs text-secondary">
+              <span className="font-semibold">Cześć {name}!</span> Odpowiedz na kilka pytań.
             </p>
           </div>
         </div>
       )}
 
       {/* Question */}
-      <h3 className="relative text-xl font-bold text-secondary mb-6">
+      <h3 className="relative text-base lg:text-lg font-bold text-secondary mb-4">
         {step.question}
       </h3>
 
       {/* Options */}
-      <div className="relative space-y-3 mb-8">
+      <div className="relative space-y-2 mb-5">
         {step.options.map((option) => (
           <button
             key={option.value}
             type="button"
             onClick={() => handleOptionSelect(option.value)}
-            className={`group w-full p-4 rounded-xl border-2 text-left transition-all duration-300 cursor-pointer flex items-center gap-4 ${
+            className={`group w-full p-3 rounded-lg border-2 text-left transition-all duration-300 cursor-pointer flex items-center gap-3 ${
               selectedValue === option.value
-                ? 'border-primary bg-gradient-to-r from-primary/5 to-primary/10 shadow-md scale-[1.02]'
+                ? 'border-primary bg-gradient-to-r from-primary/5 to-primary/10 shadow-md scale-[1.01]'
                 : 'border-gray-200 hover:border-primary/30 hover:bg-gray-50 hover:shadow-sm'
             }`}
           >
-            <div className={`w-12 h-12 rounded-xl flex items-center justify-center transition-all duration-300 ${
+            <div className={`w-9 h-9 rounded-lg flex items-center justify-center transition-all duration-300 flex-shrink-0 ${
               selectedValue === option.value
-                ? 'bg-gradient-to-br from-primary to-primary-light shadow-md'
+                ? 'bg-gradient-to-br from-primary to-primary-light shadow-sm'
                 : 'bg-gray-100 group-hover:bg-gray-200'
             }`}>
-              <span className="text-xl">{option.icon}</span>
+              <span className="text-base">{option.icon}</span>
             </div>
-            <span className={`font-medium transition-colors duration-300 ${
+            <span className={`text-sm font-medium transition-colors duration-300 ${
               selectedValue === option.value ? 'text-primary' : 'text-secondary'
             }`}>
               {option.label}
             </span>
-            <div className={`ml-auto w-6 h-6 rounded-full flex items-center justify-center transition-all duration-300 ${
+            <div className={`ml-auto w-5 h-5 rounded-full flex items-center justify-center transition-all duration-300 flex-shrink-0 ${
               selectedValue === option.value
                 ? 'bg-primary shadow-sm'
                 : 'border-2 border-gray-200 group-hover:border-primary/30'
             }`}>
               {selectedValue === option.value && (
-                <svg className="w-4 h-4 text-white" fill="currentColor" viewBox="0 0 20 20">
+                <svg className="w-3 h-3 text-white" fill="currentColor" viewBox="0 0 20 20">
                   <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
                 </svg>
               )}
@@ -222,14 +220,14 @@ function MultiStepForm({ email, name, onComplete }) {
         type="button"
         onClick={handleNext}
         disabled={!selectedValue || isLoading}
-        className="relative w-full bg-gradient-to-r from-primary to-primary-light hover:from-primary-hover hover:to-primary text-white px-6 py-4 rounded-xl font-semibold shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-0.5 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:translate-y-0 disabled:from-gray-400 disabled:to-gray-500 flex items-center justify-center gap-2 cursor-pointer overflow-hidden group"
+        className="relative w-full bg-gradient-to-r from-primary to-primary-light hover:from-primary-hover hover:to-primary text-white px-5 py-3 rounded-lg text-sm font-semibold shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-0.5 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:translate-y-0 disabled:from-gray-400 disabled:to-gray-500 flex items-center justify-center gap-2 cursor-pointer overflow-hidden group"
       >
         {/* Shine effect */}
         <div className="absolute inset-0 -translate-x-full group-hover:translate-x-full transition-transform duration-700 bg-gradient-to-r from-transparent via-white/20 to-transparent" />
 
         {isLoading ? (
           <>
-            <svg className="animate-spin h-5 w-5" fill="none" viewBox="0 0 24 24">
+            <svg className="animate-spin h-4 w-4" fill="none" viewBox="0 0 24 24">
               <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
               <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
             </svg>
@@ -238,14 +236,14 @@ function MultiStepForm({ email, name, onComplete }) {
         ) : currentStep === totalSteps - 1 ? (
           <>
             <span>Przejdź do generatora</span>
-            <svg className="w-5 h-5 group-hover:translate-x-1 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <svg className="w-4 h-4 group-hover:translate-x-1 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
             </svg>
           </>
         ) : (
           <>
             <span>Dalej</span>
-            <svg className="w-5 h-5 group-hover:translate-x-1 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <svg className="w-4 h-4 group-hover:translate-x-1 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
             </svg>
           </>
@@ -253,16 +251,16 @@ function MultiStepForm({ email, name, onComplete }) {
       </button>
 
       {/* Step dots with animation */}
-      <div className="relative flex items-center justify-center gap-3 mt-6">
+      <div className="relative flex items-center justify-center gap-2 mt-4">
         {steps.map((_, index) => (
           <div
             key={index}
             className={`relative rounded-full transition-all duration-500 ${
               index === currentStep
-                ? 'w-8 h-3 bg-gradient-to-r from-primary to-primary-light shadow-md'
+                ? 'w-6 h-2 bg-gradient-to-r from-primary to-primary-light shadow-sm'
                 : index < currentStep
-                  ? 'w-3 h-3 bg-gradient-to-r from-accent-mint to-teal-500'
-                  : 'w-3 h-3 bg-gray-200'
+                  ? 'w-2 h-2 bg-gradient-to-r from-accent-mint to-teal-500'
+                  : 'w-2 h-2 bg-gray-200'
             }`}
           >
             {index === currentStep && (

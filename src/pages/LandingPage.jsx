@@ -112,7 +112,7 @@ function LandingPage() {
   ]
 
   return (
-    <div className="min-h-screen relative overflow-hidden flex items-center" style={{ background: 'linear-gradient(135deg, #f8f9ff 0%, #f0f4ff 50%, #e8f5f0 100%)' }}>
+    <div className="h-screen max-h-screen relative overflow-hidden flex items-center" style={{ background: 'linear-gradient(135deg, #f8f9ff 0%, #f0f4ff 50%, #e8f5f0 100%)' }}>
       {/* Animated gradient orbs */}
       <div className="fixed inset-0 pointer-events-none overflow-hidden z-0">
         <div
@@ -168,11 +168,11 @@ function LandingPage() {
       </div>
 
       {/* Main content */}
-      <div className="container mx-auto px-6 py-8 relative z-10">
-        <div className="grid md:grid-cols-2 gap-8 lg:gap-16 items-center max-w-6xl mx-auto">
+      <div className="container mx-auto px-4 lg:px-6 py-4 relative z-10 h-full flex items-center">
+        <div className="grid md:grid-cols-2 gap-6 lg:gap-12 items-center max-w-6xl mx-auto w-full">
 
           {/* LEFT SIDE: Hero content */}
-          <div className="space-y-8">
+          <div className="space-y-5">
             {/* Logo with subtle glow */}
             <a
               href="https://www.aiproductheroes.pl/"
@@ -180,68 +180,52 @@ function LandingPage() {
               rel="noopener noreferrer"
               className="inline-block hover:scale-105 transition-transform duration-300"
             >
-              <img src={logoSvg} alt="AI Product Heroes" className="h-9 w-auto drop-shadow-sm" />
+              <img src={logoSvg} alt="AI Product Heroes" className="h-8 w-auto drop-shadow-sm" />
             </a>
 
-            {/* Badge */}
-            <div className="inline-flex items-center gap-2 bg-white/80 backdrop-blur-sm px-4 py-2 rounded-full border border-primary/20 shadow-sm">
-              <span className="flex h-2 w-2 relative">
-                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-accent-mint opacity-75"></span>
-                <span className="relative inline-flex rounded-full h-2 w-2 bg-accent-mint"></span>
-              </span>
-              <span className="text-sm font-medium text-secondary">Dołączyło już 500+ PM-ów</span>
-            </div>
-
             {/* Headline with gradient */}
-            <div className="space-y-4">
-              <h1 className="text-4xl lg:text-5xl xl:text-6xl font-extrabold leading-tight">
+            <div className="space-y-2">
+              <h1 className="text-3xl lg:text-4xl xl:text-5xl font-extrabold leading-tight">
                 <span className="text-secondary">Stwórz profesjonalny</span>
                 <span className="block bg-gradient-to-r from-primary via-primary-light to-accent-mint bg-clip-text text-transparent">
                   PRD w 10 minut
                 </span>
               </h1>
-              <p className="text-lg lg:text-xl text-text-secondary max-w-md leading-relaxed">
+              <p className="text-base lg:text-lg text-text-secondary max-w-md">
                 Darmowe narzędzie dla Product Managerów i założycieli startupów
               </p>
             </div>
 
             {/* Benefits with colored icons */}
-            <div className="grid grid-cols-2 gap-3">
+            <div className="grid grid-cols-2 gap-2">
               {benefits.map((benefit, index) => (
                 <div
                   key={index}
-                  className="group flex items-start gap-3 p-4 rounded-2xl bg-white/70 backdrop-blur-sm border border-white shadow-sm hover:shadow-md hover:bg-white hover:-translate-y-0.5 transition-all duration-300"
+                  className="group flex items-center gap-2 p-2.5 rounded-xl bg-white/70 backdrop-blur-sm border border-white shadow-sm hover:shadow-md hover:bg-white hover:-translate-y-0.5 transition-all duration-300"
                 >
-                  <div className={`w-10 h-10 rounded-xl bg-gradient-to-br ${benefit.color} flex items-center justify-center shadow-sm group-hover:scale-110 transition-transform duration-300`}>
-                    <span className="text-lg filter drop-shadow-sm">{benefit.icon}</span>
+                  <div className={`w-9 h-9 rounded-lg bg-gradient-to-br ${benefit.color} flex items-center justify-center shadow-sm group-hover:scale-110 transition-transform duration-300 flex-shrink-0`}>
+                    <span className="text-base">{benefit.icon}</span>
                   </div>
-                  <div className="flex-1 min-w-0">
-                    <div className="font-semibold text-secondary text-sm">{benefit.title}</div>
-                    <div className="text-text-muted text-xs mt-0.5">{benefit.desc}</div>
+                  <div className="min-w-0">
+                    <div className="font-semibold text-secondary text-xs">{benefit.title}</div>
+                    <div className="text-text-muted text-[10px]">{benefit.desc}</div>
                   </div>
                 </div>
               ))}
             </div>
 
             {/* Footer branding */}
-            <div className="flex items-center gap-3">
-              <div className="flex -space-x-2">
-                <div className="w-8 h-8 rounded-full bg-gradient-to-br from-primary to-primary-light flex items-center justify-center text-white text-xs font-bold ring-2 ring-white">A</div>
-                <div className="w-8 h-8 rounded-full bg-gradient-to-br from-accent-mint to-teal-500 flex items-center justify-center text-white text-xs font-bold ring-2 ring-white">K</div>
-                <div className="w-8 h-8 rounded-full bg-gradient-to-br from-amber-400 to-orange-500 flex items-center justify-center text-white text-xs font-bold ring-2 ring-white">M</div>
-              </div>
-              <p className="text-sm text-text-secondary">
-                By{' '}
-                <a
-                  href="https://www.aiproductheroes.pl/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="font-semibold text-primary hover:text-primary-hover transition-colors"
-                >
-                  AI Product Heroes
-                </a>
-              </p>
-            </div>
+            <p className="text-xs text-text-secondary">
+              By{' '}
+              <a
+                href="https://www.aiproductheroes.pl/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="font-semibold text-primary hover:text-primary-hover transition-colors"
+              >
+                AI Product Heroes
+              </a>
+            </p>
           </div>
 
           {/* RIGHT SIDE: Form */}
@@ -260,21 +244,16 @@ function LandingPage() {
                   />
                 </div>
               ) : (
-                <div className="relative bg-white rounded-2xl shadow-2xl p-8 border border-white/50 backdrop-blur-sm">
+                <div className="relative bg-white rounded-2xl shadow-2xl p-5 lg:p-6 border border-white/50 backdrop-blur-sm">
                   {/* Decorative corner accent */}
-                  <div className="absolute top-0 right-0 w-24 h-24 bg-gradient-to-bl from-primary/5 to-transparent rounded-tr-2xl" />
-                  <div className="absolute bottom-0 left-0 w-20 h-20 bg-gradient-to-tr from-accent-mint/5 to-transparent rounded-bl-2xl" />
+                  <div className="absolute top-0 right-0 w-20 h-20 bg-gradient-to-bl from-primary/5 to-transparent rounded-tr-2xl" />
+                  <div className="absolute bottom-0 left-0 w-16 h-16 bg-gradient-to-tr from-accent-mint/5 to-transparent rounded-bl-2xl" />
 
-                  <div className="relative text-center mb-6">
-                    <div className="inline-flex items-center justify-center w-14 h-14 rounded-2xl bg-gradient-to-br from-primary to-primary-light mb-4 shadow-lg">
-                      <svg className="w-7 h-7 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
-                      </svg>
-                    </div>
-                    <h2 className="text-2xl font-bold text-secondary mb-2">
+                  <div className="relative text-center mb-3">
+                    <h2 className="text-lg font-bold text-secondary mb-0.5">
                       Zapisz się i zacznij
                     </h2>
-                    <p className="text-sm text-text-secondary">
+                    <p className="text-xs text-text-secondary">
                       Dołącz do społeczności Product Managerów
                     </p>
                   </div>
@@ -332,27 +311,27 @@ function LandingPage() {
                     }
 
                     #mlb2-35455963.ml-form-embedContainer .ml-form-embedWrapper .ml-form-embedBody .ml-form-fieldRow {
-                      margin: 0 0 16px 0;
+                      margin: 0 0 12px 0;
                       width: 100%;
                     }
 
                     #mlb2-35455963.ml-form-embedContainer .ml-form-embedWrapper .ml-form-embedBody .ml-form-fieldRow.ml-last-item {
-                      margin: 0 0 16px 0;
+                      margin: 0 0 12px 0;
                     }
 
                     #mlb2-35455963.ml-form-embedContainer .ml-form-embedWrapper .ml-form-embedBody .ml-form-fieldRow input {
                       background-color: #ffffff !important;
                       color: #1a1a2e !important;
                       border-color: #e5e7eb !important;
-                      border-radius: 12px !important;
+                      border-radius: 10px !important;
                       border-style: solid !important;
                       border-width: 1px !important;
                       font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-                      font-size: 16px !important;
+                      font-size: 14px !important;
                       height: auto;
-                      line-height: 24px !important;
+                      line-height: 20px !important;
                       margin: 0;
-                      padding: 14px 16px !important;
+                      padding: 10px 14px !important;
                       width: 100% !important;
                       box-sizing: border-box !important;
                       transition: all 0.2s ease;
@@ -377,16 +356,16 @@ function LandingPage() {
                     #mlb2-35455963.ml-form-embedContainer .ml-form-embedWrapper .ml-form-embedBody .ml-form-embedSubmit button {
                       background-color: #4d65ff !important;
                       border: none !important;
-                      border-radius: 12px !important;
+                      border-radius: 10px !important;
                       box-shadow: 0 4px 6px -1px rgba(77, 101, 255, 0.25) !important;
                       color: #ffffff !important;
                       cursor: pointer;
                       font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif !important;
-                      font-size: 16px !important;
+                      font-size: 14px !important;
                       font-weight: 600 !important;
-                      line-height: 24px !important;
+                      line-height: 20px !important;
                       height: auto;
-                      padding: 14px 24px !important;
+                      padding: 12px 20px !important;
                       width: 100% !important;
                       box-sizing: border-box !important;
                       transition: all 0.2s ease !important;
@@ -510,9 +489,9 @@ function LandingPage() {
                     </div>
                   </div>
 
-                  <div className="relative mt-6 pt-4 border-t border-gray-100">
-                    <div className="flex items-center justify-center gap-2 text-xs text-text-muted">
-                      <svg className="w-4 h-4 text-accent-mint" fill="currentColor" viewBox="0 0 20 20">
+                  <div className="relative mt-3 pt-3 border-t border-gray-100">
+                    <div className="flex items-center justify-center gap-1.5 text-[10px] text-text-muted">
+                      <svg className="w-3 h-3 text-accent-mint" fill="currentColor" viewBox="0 0 20 20">
                         <path fillRule="evenodd" d="M5 9V7a5 5 0 0110 0v2a2 2 0 012 2v5a2 2 0 01-2 2H5a2 2 0 01-2-2v-5a2 2 0 012-2zm8-2v2H7V7a3 3 0 016 0z" clipRule="evenodd" />
                       </svg>
                       <span>Twoje dane są bezpieczne. Bez spamu.</span>
